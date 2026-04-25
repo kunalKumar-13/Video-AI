@@ -1,0 +1,50 @@
+{
+  "narrative": "A brave little toaster... (Trimmed for brevity)",
+  "language": "English",
+  "blueprint": {
+    "genre": "Kids Fantasy",
+    "tone": "Playful and Adventurous",
+    "audience": "Children",
+    "characters": [
+      {
+        "name": "Toasty",
+        "description": "A brave, miniature silver toaster.",
+        "role": "Protagonist"
+      }
+    ],
+    "five_step_arc": [
+      "Introduction",
+      "Inciting Incident",
+      "Rising Action",
+      "Climax",
+      "Resolution"
+    ]
+  },
+  "script": {
+    "scenes": [
+      {
+        "scene_number": 1,
+        "location": "SUBURBAN KITCHEN",
+        "transition": "FADE IN",
+        "dialogues": ["TOASTY: We have to find him!"]
+      }
+    ]
+  },
+  "scene_plan": {
+    "visuals": [
+      {
+        "scene_number": 1,
+        "location": "Suburban Kitchen",
+        "camera_shot": "Low angle tracking",
+        "lighting": "Moonlight streaming through windows",
+        "mood": "Eerie but inviting",
+        "detailed_image_prompt": "A brave silver toaster sitting on a kitchen counter illuminated by a shaft of cool blue moonlight in a dark suburban home, cinematic lighting, Disney Pixar style."
+      }
+    ]
+  },
+  "evaluation": {
+    "issues_found": [],
+    "coherence_score": 9,
+    "approved": true
+  }
+}
