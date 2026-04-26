@@ -195,10 +195,19 @@ with col2:
 
 # Workflow Execution
 if generate_btn and narrative_input:
-    if not use_mock_data and not os.getenv("GROQ_API_KEY"):
-        st.error("Error: GROQ_API_KEY environment variable is not set. Please set it in a .env file.")
-        st.stop()
-        
+    # Check for API Key
+    api_key = os.getenv("GROQ_API_KEY")
+    
+    if not use_mock_data and not api_key:
+        with st.sidebar:
+            st.warning("GROQ_API_KEY not found in environment.")
+            api_key = st.text_input("Enter Groq API Key", type="password")
+            if api_key:
+                os.environ["GROQ_API_KEY"] = api_key
+            else:
+                st.error("Please provide a Groq API Key to proceed.")
+                st.stop()
+
     with st.spinner("Initializing AI Multi-Agent Studio..."):
         workflow = create_workflow()
         
@@ -215,7 +224,7 @@ if generate_btn and narrative_input:
         }
         
     try:
-        with st.spinner("AI Multi-Agent Studio is crafting your movie with Gemini... This may take a minute."):
+        with st.spinner("AI Multi-Agent Studio is crafting your movie with Groq... This may take a minute."):
             # Run workflow
             result_state = workflow.invoke(initial_state)
             

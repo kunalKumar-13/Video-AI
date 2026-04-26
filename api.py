@@ -1,5 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 from workflows.graph import create_workflow
 from workflows.state import WorkflowState
 
