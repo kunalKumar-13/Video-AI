@@ -19,217 +19,171 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Dark Cinematic Theme Override
+# Super Mario Retro Theme Override
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     
-    :root {
-        --bg-color: #05050A;
-    }
-    
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    @keyframes floatBox {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
-        100% { transform: translateY(0px); }
-    }
-    
-    @keyframes neonPulse {
-        0% { text-shadow: 0 0 5px #FF3366, 0 0 10px #FF3366, 0 0 20px #FF3366; }
-        50% { text-shadow: 0 0 2px #FF3366, 0 0 5px #FF9933, 0 0 10px #FF9933; }
-        100% { text-shadow: 0 0 5px #FF3366, 0 0 10px #FF3366, 0 0 20px #FF3366; }
-    }
-
-    @keyframes rotateBg { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
-    @keyframes rotateBgReverse { 0% { transform: rotate(360deg) scale(1.1); } 50% { transform: rotate(180deg) scale(1); } 100% { transform: rotate(0deg) scale(1.1); } }
-
     .stApp {
-        background-color: var(--bg-color);
-        color: #E2E8F0;
-        font-family: 'Outfit', sans-serif;
-        overflow: hidden;
+        background-color: #5C94FC;
+        background-image: 
+            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.1) 75%, rgba(255, 255, 255, 0.1)), 
+            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.1) 75%, rgba(255, 255, 255, 0.1));
+        background-size: 60px 60px;
+        background-position: 0 0, 30px 30px;
+        color: #000;
+        font-family: 'Press Start 2P', cursive;
     }
     
-    /* --- Pure CSS Aurora Shader Background --- */
-    .stApp::before {
-        content: '';
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background-image: 
-            radial-gradient(ellipse at 50% 50%, rgba(25, 76, 204, 0.25) 0%, transparent 60%),
-            radial-gradient(ellipse at 30% 70%, rgba(255, 51, 102, 0.15) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 30%, rgba(0, 201, 255, 0.2) 0%, transparent 50%);
-        background-blend-mode: screen;
-        animation: rotateBg 25s ease-in-out infinite;
-        z-index: -2;
-        pointer-events: none;
-    }
-    .stApp::after {
-        content: '';
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background-image: 
-            radial-gradient(ellipse at 60% 40%, rgba(153, 51, 255, 0.15) 0%, transparent 55%),
-            radial-gradient(ellipse at 40% 60%, rgba(51, 204, 153, 0.1) 0%, transparent 55%);
-        background-blend-mode: screen;
-        animation: rotateBgReverse 30s ease-in-out infinite;
-        z-index: -1;
-        pointer-events: none;
-    }
-    
-    /* Native Header Glassmorphism */
+    /* Native Header Override */
     header[data-testid="stHeader"] {
-        background: rgba(5, 5, 10, 0.4) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: transparent !important;
     }
-    
-    /* Text Inputs (Enhanced Glassmorphism) */
-    .stTextArea textarea {
-        background: rgba(20, 20, 30, 0.4) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px;
+
+    /* All markdown text */
+    .stMarkdown p, h1, h2, h3, h4, h5, h6, label, span {
         color: #fff !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 8px 32px 0 rgba(0,0,0,0.2);
-        font-size: 1.1rem;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-shadow: 2px 2px 0px #000;
+        letter-spacing: 1px;
+    }
+
+    /* Text Inputs (Pixel Layout) */
+    .stTextArea textarea {
+        background: #fff !important;
+        border: 4px solid #000 !important;
+        border-radius: 0px !important;
+        color: #000 !important;
+        text-shadow: none !important;
+        font-size: 1rem;
+        box-shadow: 6px 6px 0px #000;
+        transition: all 0.1s linear;
+        padding: 10px;
     }
     .stTextArea textarea:focus {
-        background: rgba(30, 30, 45, 0.6) !important;
-        border-color: #FF3366 !important;
-        box-shadow: 0 0 25px rgba(255, 51, 102, 0.3), inset 0 2px 4px rgba(0,0,0,0.5);
-        transform: translateY(-2px);
+        border-color: #E52521 !important;
+        box-shadow: 8px 8px 0px #E52521;
+        transform: translate(-2px, -2px);
     }
     
-    /* Dropdowns (Enhanced Glassmorphism) */
+    /* Dropdowns */
     .stSelectbox div[data-baseweb="select"] > div {
-        background: rgba(20, 20, 30, 0.4) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 10px;
-        color: #fff !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        background: #fff !important;
+        border: 4px solid #000 !important;
+        border-radius: 0px !important;
+        color: #000 !important;
+        box-shadow: 4px 4px 0px #000;
+    }
+    .stSelectbox div[data-baseweb="select"] span {
+        color: #000 !important;
+        text-shadow: none !important;
     }
     
-    /* Premium Button Override */
+    /* Premium Button Override - Mario Red Style */
     .stButton > button {
-        background: linear-gradient(270deg, #FF3366, #FF9933, #FF3366);
-        background-size: 200% 200%;
-        animation: gradientShift 3s ease infinite;
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 0.75rem 2.5rem;
-        font-weight: 800;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+        background-color: #E52521 !important;
+        color: white !important;
+        border: 4px solid #000 !important;
+        border-radius: 0px !important;
+        padding: 1rem 2rem !important;
+        font-family: 'Press Start 2P', cursive !important;
+        font-size: 1rem !important;
+        text-transform: uppercase !important;
+        text-shadow: 2px 2px 0px #000 !important;
+        box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 4px 4px 0px #000 !important;
+        transition: all 0.1s linear !important;
     }
     .stButton > button:hover {
-        transform: translateY(-4px) scale(1.03);
-        box-shadow: 0 10px 30px rgba(255, 51, 102, 0.6);
-        color: #000;
+        background-color: #FBD000 !important;
+        color: #000 !important;
+        text-shadow: 2px 2px 0px #fff !important;
+        transform: translate(2px, 2px) !important;
+        box-shadow: inset -4px -4px 0px rgba(0,0,0,0.2), 2px 2px 0px #000 !important;
+    }
+    .stButton > button:active {
+        transform: translate(4px, 4px) !important;
+        box-shadow: none !important;
     }
     
-    /* Tabs styling & Animation */
+    /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 12px;
+        gap: 0px;
         background-color: transparent;
     }
     .stTabs [data-baseweb="tab"] {
-        background: rgba(20, 20, 30, 0.3);
-        backdrop-filter: blur(10px);
-        border-radius: 12px 12px 0 0;
-        padding: 12px 24px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: #8B0000;
+        border: 4px solid #000;
         border-bottom: none;
-        color: #888;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        border-radius: 0;
+        padding: 12px 24px;
+        color: #fff;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.7rem;
     }
     .stTabs [aria-selected="true"] {
-        background: rgba(255, 51, 102, 0.15) !important;
-        color: #fff !important;
-        border-bottom: 2px solid #FF3366 !important;
-        box-shadow: 0 -4px 15px rgba(255, 51, 102, 0.1);
+        background: #E52521 !important;
+        color: #FBD000 !important;
+        border: 4px solid #000 !important;
+        border-bottom: 4px solid #E52521 !important;
+        box-shadow: 4px -4px 0px rgba(0,0,0,0.2);
+        margin-bottom: -4px;
+        z-index: 10;
+        text-shadow: 2px 2px 0px #000;
     }
     
-    /* Alerts and Cards (Glassmorphism) */
+    /* Alerts and Cards */
     .stAlert {
-        background: rgba(20, 20, 30, 0.4) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-radius: 16px;
+        background-color: #43B047 !important;
+        border: 4px solid #000 !important;
+        border-radius: 0px !important;
         color: #fff !important;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        animation: floatBox 4s ease-in-out infinite;
+        box-shadow: 4px 4px 0px #000 !important;
     }
+    
     /* Hide top padding */
     .block-container {
         padding-top: 1rem;
     }
     
-    /* CUSTOM FORGE AI HEADER */
-    .forge-title-container {
+    /* MARIO TITLE CONTAINER */
+    .mario-title-container {
         text-align: center;
         padding: 2rem 0;
         margin-bottom: 2rem;
-        position: relative;
     }
-    .forge-title {
-        font-family: 'Outfit', sans-serif;
-        font-weight: 900;
-        font-size: 5rem;
-        margin: 0;
-        background: linear-gradient(270deg, #FF3366, #FF9933, #00C9FF, #FF3366);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientShift 6s ease infinite, floatBox 3s ease-in-out infinite;
-        letter-spacing: -3px;
+    .mario-title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 4rem;
+        color: #E52521;
+        text-shadow: 4px 4px 0px #000, 8px 8px 0px #fff;
+        letter-spacing: -2px;
+        animation: bounce 1s ease-in-out infinite alternate;
     }
-    .forge-title span {
-        font-size: 3.5rem;
-        vertical-align: top;
+    .mario-title span {
+        color: #FBD000;
     }
-    .forge-subtitle {
-        font-size: 1.4rem;
-        color: #8A92A6;
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        margin-top: 0.5rem;
-        font-weight: 300;
-        animation: fadeIn 3s ease-in;
+    .mario-subtitle {
+        font-size: 1rem;
+        color: #fff;
+        text-shadow: 2px 2px 0px #000;
+        margin-top: 2rem;
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-15px); }
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Custom HTML Header
 st.markdown("""
-<div class="forge-title-container">
-    <div class="forge-title">FORGE<span style="-webkit-text-fill-color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.8);">AI</span></div>
-    <div class="forge-subtitle">Narrative to Visual Story Agent</div>
+<div class="mario-title-container">
+    <div class="mario-title">SUPER FORGE<span>AI</span></div>
+    <div class="mario-subtitle">PRESS START TO GENERATE</div>
 </div>
 """, unsafe_allow_html=True)
 st.write("---")
