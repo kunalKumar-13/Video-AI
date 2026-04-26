@@ -46,39 +46,86 @@ st.markdown("""
         100% { text-shadow: 0 0 5px #FF3366, 0 0 10px #FF3366, 0 0 20px #FF3366; }
     }
 
+    @keyframes rotateBg { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
+    @keyframes rotateBgReverse { 0% { transform: rotate(360deg) scale(1.1); } 50% { transform: rotate(180deg) scale(1); } 100% { transform: rotate(0deg) scale(1.1); } }
+
     .stApp {
         background-color: var(--bg-color);
-        background-image: 
-            radial-gradient(circle at 15% 50%, rgba(255, 51, 102, 0.05), transparent 25%),
-            radial-gradient(circle at 85% 30%, rgba(100, 150, 255, 0.08), transparent 25%);
         color: #E2E8F0;
         font-family: 'Outfit', sans-serif;
+        overflow: hidden;
     }
     
-    /* Text Inputs (Glassmorphism + Animated border hit) */
+    /* --- Pure CSS Aurora Shader Background --- */
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+            radial-gradient(ellipse at 50% 50%, rgba(25, 76, 204, 0.25) 0%, transparent 60%),
+            radial-gradient(ellipse at 30% 70%, rgba(255, 51, 102, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 30%, rgba(0, 201, 255, 0.2) 0%, transparent 50%);
+        background-blend-mode: screen;
+        animation: rotateBg 25s ease-in-out infinite;
+        z-index: -2;
+        pointer-events: none;
+    }
+    .stApp::after {
+        content: '';
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+            radial-gradient(ellipse at 60% 40%, rgba(153, 51, 255, 0.15) 0%, transparent 55%),
+            radial-gradient(ellipse at 40% 60%, rgba(51, 204, 153, 0.1) 0%, transparent 55%);
+        background-blend-mode: screen;
+        animation: rotateBgReverse 30s ease-in-out infinite;
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    /* Native Header Glassmorphism */
+    header[data-testid="stHeader"] {
+        background: rgba(5, 5, 10, 0.4) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Text Inputs (Enhanced Glassmorphism) */
     .stTextArea textarea {
-        background: rgba(255, 255, 255, 0.02) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: rgba(20, 20, 30, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 12px;
         color: #fff !important;
-        backdrop-filter: blur(15px);
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 4px 20px rgba(0,0,0,0.2);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 8px 32px 0 rgba(0,0,0,0.2);
         font-size: 1.1rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .stTextArea textarea:focus {
+        background: rgba(30, 30, 45, 0.6) !important;
         border-color: #FF3366 !important;
-        box-shadow: 0 0 25px rgba(255, 51, 102, 0.2), inset 0 2px 4px rgba(0,0,0,0.5);
+        box-shadow: 0 0 25px rgba(255, 51, 102, 0.3), inset 0 2px 4px rgba(0,0,0,0.5);
         transform: translateY(-2px);
     }
     
-    /* Dropdowns */
+    /* Dropdowns (Enhanced Glassmorphism) */
     .stSelectbox div[data-baseweb="select"] > div {
-        background: rgba(255, 255, 255, 0.02) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: rgba(20, 20, 30, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 10px;
         color: #fff !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     
     /* Premium Button Override */
@@ -87,13 +134,14 @@ st.markdown("""
         background-size: 200% 200%;
         animation: gradientShift 3s ease infinite;
         color: white;
-        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 12px;
         padding: 0.75rem 2.5rem;
         font-weight: 800;
         font-size: 1.1rem;
         letter-spacing: 1px;
         text-transform: uppercase;
+        backdrop-filter: blur(10px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
     }
@@ -109,7 +157,8 @@ st.markdown("""
         background-color: transparent;
     }
     .stTabs [data-baseweb="tab"] {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(20, 20, 30, 0.3);
+        backdrop-filter: blur(10px);
         border-radius: 12px 12px 0 0;
         padding: 12px 24px;
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -119,19 +168,21 @@ st.markdown("""
         transition: all 0.3s ease;
     }
     .stTabs [aria-selected="true"] {
-        background: rgba(255, 51, 102, 0.1) !important;
+        background: rgba(255, 51, 102, 0.15) !important;
         color: #fff !important;
         border-bottom: 2px solid #FF3366 !important;
         box-shadow: 0 -4px 15px rgba(255, 51, 102, 0.1);
     }
     
-    /* Alerts and Cards */
+    /* Alerts and Cards (Glassmorphism) */
     .stAlert {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: 1px dashed rgba(255, 255, 255, 0.2) !important;
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
+        background: rgba(20, 20, 30, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 16px;
         color: #fff !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         animation: floatBox 4s ease-in-out infinite;
     }
     /* Hide top padding */
