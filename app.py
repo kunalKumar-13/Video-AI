@@ -19,20 +19,31 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Super Mario Retro Theme Override
+# High-End Professional Dark Theme
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+        --bg-base: #000000;
+        --bg-surface: #0a0a0a;
+        --bg-surface-hover: #1a1a1a;
+        --border-color: #222222;
+        --text-primary: #ededed;
+        --text-secondary: #888888;
+        --accent: #2563EB;
+        --accent-glow: rgba(37, 99, 235, 0.2);
+    }
     
     .stApp {
-        background-color: #5C94FC;
+        background-color: var(--bg-base);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
         background-image: 
-            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.1) 75%, rgba(255, 255, 255, 0.1)), 
-            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.1) 75%, rgba(255, 255, 255, 0.1));
-        background-size: 60px 60px;
-        background-position: 0 0, 30px 30px;
-        color: #000;
-        font-family: 'Press Start 2P', cursive;
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        background-attachment: fixed;
     }
     
     /* Native Header Override */
@@ -42,161 +53,131 @@ st.markdown("""
 
     /* All markdown text */
     .stMarkdown p, h1, h2, h3, h4, h5, h6, label, span {
-        color: #fff !important;
-        text-shadow: 2px 2px 0px #000;
-        letter-spacing: 1px;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', sans-serif;
     }
 
-    /* Text Inputs (Pixel Layout) */
-    .stTextArea textarea {
-        background: #fff !important;
-        border: 4px solid #000 !important;
-        border-radius: 0px !important;
-        color: #000 !important;
-        text-shadow: none !important;
-        font-size: 1rem;
-        box-shadow: 6px 6px 0px #000;
-        transition: all 0.1s linear;
-        padding: 10px;
-    }
-    .stTextArea textarea:focus {
-        border-color: #E52521 !important;
-        box-shadow: 8px 8px 0px #E52521;
-        transform: translate(-2px, -2px);
+    p { color: var(--text-secondary) !important; }
+
+    /* Inputs (Sleek dark mode) */
+    .stTextArea textarea, .stSelectbox div[data-baseweb="select"] > div {
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        color: var(--text-primary) !important;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+        padding: 0.75rem;
     }
     
-    /* Dropdowns */
-    .stSelectbox div[data-baseweb="select"] > div {
-        background: #fff !important;
-        border: 4px solid #000 !important;
-        border-radius: 0px !important;
-        color: #000 !important;
-        box-shadow: 4px 4px 0px #000;
-    }
-    .stSelectbox div[data-baseweb="select"] span {
-        color: #000 !important;
-        text-shadow: none !important;
+    .stTextArea textarea:focus, .stSelectbox div[data-baseweb="select"] > div:focus-within {
+        border-color: var(--text-secondary) !important;
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.1) !important;
     }
     
-    /* Premium Button Override - Mario Red Style */
+    /* Premium Button Override - Primary CTA */
     .stButton > button {
-        background-color: #E52521 !important;
-        color: white !important;
-        border: 4px solid #000 !important;
-        border-radius: 0px !important;
-        padding: 1rem 2rem !important;
-        font-family: 'Press Start 2P', cursive !important;
+        background: var(--text-primary) !important;
+        color: var(--bg-base) !important;
+        border: 1px solid var(--text-primary) !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 2rem !important;
+        font-weight: 600 !important;
         font-size: 1rem !important;
-        text-transform: uppercase !important;
-        text-shadow: 2px 2px 0px #000 !important;
-        box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 4px 4px 0px #000 !important;
-        transition: all 0.1s linear !important;
+        letter-spacing: 0px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 4px 14px 0 rgba(255,255,255,0.1) !important;
+        width: 100%;
     }
     .stButton > button:hover {
-        background-color: #FBD000 !important;
-        color: #000 !important;
-        text-shadow: 2px 2px 0px #fff !important;
-        transform: translate(2px, 2px) !important;
-        box-shadow: inset -4px -4px 0px rgba(0,0,0,0.2), 2px 2px 0px #000 !important;
-    }
-    .stButton > button:active {
-        transform: translate(4px, 4px) !important;
-        box-shadow: none !important;
+        background: transparent !important;
+        color: var(--text-primary) !important;
+        transform: translateY(-1px) !important;
     }
     
     /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 0px;
+        gap: 24px;
         background-color: transparent;
+        border-bottom: 1px solid var(--border-color);
     }
     .stTabs [data-baseweb="tab"] {
-        background: #8B0000;
-        border: 4px solid #000;
-        border-bottom: none;
-        border-radius: 0;
-        padding: 12px 24px;
-        color: #fff;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.7rem;
+        background: transparent;
+        border: none;
+        padding: 12px 0;
+        color: var(--text-secondary);
+        font-weight: 500;
+        transition: color 0.2s ease;
     }
     .stTabs [aria-selected="true"] {
-        background: #E52521 !important;
-        color: #FBD000 !important;
-        border: 4px solid #000 !important;
-        border-bottom: 4px solid #E52521 !important;
-        box-shadow: 4px -4px 0px rgba(0,0,0,0.2);
-        margin-bottom: -4px;
-        z-index: 10;
-        text-shadow: 2px 2px 0px #000;
+        background: transparent !important;
+        color: var(--text-primary) !important;
+        border-bottom: 2px solid var(--text-primary) !important;
     }
     
     /* Alerts and Cards */
     .stAlert {
-        background-color: #43B047 !important;
-        border: 4px solid #000 !important;
-        border-radius: 0px !important;
-        color: #fff !important;
-        box-shadow: 4px 4px 0px #000 !important;
+        background-color: var(--bg-surface) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        color: var(--text-primary) !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
     }
     
-    /* Hide top padding */
-    .block-container {
-        padding-top: 1rem;
+    /* Checkbox alignment */
+    .stCheckbox {
+        display: flex;
+        align-items: center;
+        height: 100%;
     }
-    
-    /* MARIO TITLE CONTAINER */
-    .mario-title-container {
+
+    /* FORGE TITLE CONTAINER */
+    .forge-title-container {
         text-align: center;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
+        padding: 3rem 0 1rem;
     }
-    .mario-title {
-        font-family: 'Press Start 2P', cursive;
-        font-size: 4rem;
-        color: #E52521;
-        text-shadow: 4px 4px 0px #000, 8px 8px 0px #fff;
-        letter-spacing: -2px;
-        animation: bounce 1s ease-in-out infinite alternate;
+    .forge-title {
+        font-weight: 700;
+        font-size: 3.5rem;
+        color: var(--text-primary);
+        letter-spacing: -1px;
+        margin: 0;
     }
-    .mario-title span {
-        color: #FBD000;
+    .forge-title span {
+        color: var(--text-secondary) !important;
+        font-weight: 300;
     }
-    .mario-subtitle {
-        font-size: 1rem;
-        color: #fff;
-        text-shadow: 2px 2px 0px #000;
-        margin-top: 2rem;
-        animation: blink 1s step-end infinite;
-    }
-    @keyframes bounce {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-15px); }
-    }
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+    .forge-subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        margin-top: 0.5rem;
+        font-weight: 400;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Custom HTML Header
 st.markdown("""
-<div class="mario-title-container">
-    <div class="mario-title">SUPER FORGE<span>AI</span></div>
-    <div class="mario-subtitle">PRESS START TO GENERATE</div>
+<div class="forge-title-container">
+    <div class="forge-title">Forge <span>AI</span></div>
+    <div class="forge-subtitle">Professional Cinematic Story Agent</div>
 </div>
 """, unsafe_allow_html=True)
-st.write("---")
+st.write("")
 
-# Input Panel
-col1, col2 = st.columns([3, 1])
+# Input Panel Structure - Properly Aligned
+narrative_input = st.text_area("Story Narrative", height=140, placeholder="Once upon a time in a cyberpunk city...")
+
+col1, col2 = st.columns([1, 1])
 with col1:
-    narrative_input = st.text_area("Enter your story", height=200, placeholder="Once upon a time in a cyberpunk city...")
+    language = st.selectbox("Output Language", ["English", "Hindi", "Spanish", "French", "German", "Japanese", "Korean", "Arabic", "Portuguese", "Russian", "Italian", "Chinese (Mandarin)"])
 with col2:
-    language = st.selectbox("Language", ["English", "Hindi", "Spanish", "French", "German", "Japanese", "Korean", "Arabic", "Portuguese", "Russian", "Italian", "Chinese (Mandarin)"])
-    use_mock_data = st.checkbox("🛜 Use Mock Data (Bypass API Billing)", value=False, help="Enable this if your API key is out of credits to bypass remote LLM calls.")
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    generate_btn = st.button("Generate Production 🚀", use_container_width=True)
+    st.markdown("<div style='height: 32px;'></div>", unsafe_allow_html=True)
+    use_mock_data = st.checkbox("🛜 Use Mock Data (Bypass API Billing)", value=False)
+
+st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+generate_btn = st.button("Generate Production Model →", use_container_width=True)
 
 # Workflow Execution
 if generate_btn and narrative_input:
